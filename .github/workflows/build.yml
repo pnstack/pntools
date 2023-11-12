@@ -39,8 +39,7 @@ jobs:
       - name: Update macos-latest
         if: matrix.platform == 'macos-latest'
         run: |
-          brew update
-          brew install llvm g++
+          brew install llvm
 
       - name: install dependencies (mac only)
         if: matrix.platform == 'macos-latest'
