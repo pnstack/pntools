@@ -8,8 +8,8 @@ import Timer from './components/time';
 function Tauri() {
   return (
     <div>
-      {/* <TauriShell /> */}
-      <Timer/>
+      <TauriShell />
+      {/* <Timer/> */}
     </div>
   );
 }

@@ -7,3 +7,11 @@ export const setDbStorage = async (key: string, value: string) => {
 export const getDbStorage = async (key: string): Promise<string> => {
   return (await invoke('get_db', { key })) || '';
 };
+
+export const getAllDbKeys = async (): Promise<string[]> => {
+  return (await invoke('get_all_db_keys', {})) || [];
+}
+
+export const removeDbKey = async (key: string) => {
+  return await invoke('remove_key', { key });
+};

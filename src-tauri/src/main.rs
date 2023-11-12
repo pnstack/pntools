@@ -1,16 +1,11 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-
-
-
-use std::{thread, time::Duration};
-
 use tauri::Manager;
 
 mod commands;
 pub mod db;
-mod menus;
 mod events;
+mod menus;
 // the payload type must implement `Serialize` and `Clone`.
 #[derive(Clone, serde::Serialize)]
 struct Payload {
@@ -23,7 +18,9 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             commands::greet,
             commands::put_db,
-            commands::get_db
+            commands::get_db,
+            commands::get_all_db_keys,
+            commands::remove_key
         ])
         .setup(|app| {
             // listen to the `event-name` (emitted on any window)
@@ -42,11 +39,11 @@ fn main() {
             // unlisten to the event using the `id` returned on the `listen_global` function
             // a `once_global` API is also exposed on the `App` struct
             // app.unlisten(id);
-            //       
+            //
 
             // let handle = thread::spawn(|| {
-            //     events::handle_time_event(app); 
-            // });       
+            //     events::handle_time_event(app);
+            // });
             Ok(())
         })
         .run(tauri::generate_context!())

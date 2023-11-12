@@ -20,6 +20,9 @@ dependencies:
   localforage:
     specifier: ^1.10.0
     version: 1.10.0
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
   match-sorter:
     specifier: ^6.3.1
     version: 6.3.1
@@ -43,7 +46,7 @@ dependencies:
     version: 1.2.0
   tauri-plugin-websocket-api:
     specifier: github:tauri-apps/tauri-plugin-websocket#v1
-    version: github.com/tauri-apps/tauri-plugin-websocket/c085eb80347e66433570322b8c62028b804dfeef
+    version: github.com/tauri-apps/tauri-plugin-websocket/42ee4f16139618d77acf727db0b9e0c13f716474
 
 devDependencies:
   '@tailwindcss/typography':
@@ -52,6 +55,9 @@ devDependencies:
   '@tauri-apps/cli':
     specifier: ^1.4.0
     version: 1.4.0
+  '@types/lodash':
+    specifier: ^4.14.201
+    version: 4.14.201
   '@types/node':
     specifier: ^20.3.3
     version: 20.6.0
@@ -957,6 +963,11 @@ packages:
     engines: {node: '>= 14.6.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
     dev: false
 
+  /@tauri-apps/api@1.5.1:
+    resolution: {integrity: sha512-6unsZDOdlXTmauU3NhWhn+Cx0rODV+rvNvTdvolE5Kls5ybA6cqndQENDt1+FS0tF7ozCP66jwWoH6a5h90BrA==}
+    engines: {node: '>= 14.6.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
+    dev: false
+
   /@tauri-apps/cli-darwin-arm64@1.4.0:
     resolution: {integrity: sha512-nA/ml0SfUt6/CYLVbHmT500Y+ijqsuv5+s9EBnVXYSLVg9kbPUZJJHluEYK+xKuOj6xzyuT/+rZFMRapmJD3jQ==}
     engines: {node: '>= 10'}
@@ -1086,6 +1097,10 @@ packages:
 
   /@types/json-schema@7.0.12:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
+    dev: true
+
+  /@types/lodash@4.14.201:
+    resolution: {integrity: sha512-y9euML0cim1JrykNxADLfaG0FgD1g/yTHwUs/Jg9ZIU7WKj2/4IW9Lbb1WZbvck78W/lfGXFfe+u2EGfIJXdLQ==}
     dev: true
 
   /@types/mdast@3.0.12:
@@ -2292,6 +2307,10 @@ packages:
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
+
+  /lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
 
   /longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
@@ -4160,10 +4179,10 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: false
 
-  github.com/tauri-apps/tauri-plugin-websocket/c085eb80347e66433570322b8c62028b804dfeef:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-websocket/tar.gz/c085eb80347e66433570322b8c62028b804dfeef}
+  github.com/tauri-apps/tauri-plugin-websocket/42ee4f16139618d77acf727db0b9e0c13f716474:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-websocket/tar.gz/42ee4f16139618d77acf727db0b9e0c13f716474}
     name: tauri-plugin-websocket-api
     version: 0.0.0
     dependencies:
-      '@tauri-apps/api': 1.4.0
+      '@tauri-apps/api': 1.5.1
     dev: false
