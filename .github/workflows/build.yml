@@ -36,10 +36,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev
 
-      # - name: Update macos-latest
-      #   if: matrix.platform == 'macos-latest'
-      #   run: |
-      #     brew install llvm
+      - name: Update macos-latest
+        if: matrix.platform == 'macos-latest'
+        run: |
+          brew install gcc47 --use-llvm
 
       - name: install dependencies (mac only)
         if: matrix.platform == 'macos-latest'
