@@ -57,6 +57,7 @@ jobs:
         if: matrix.platform == 'macos-latest'
         run: |
           rustup target add aarch64-apple-darwin
+          sudo apt-get install g++
 
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
