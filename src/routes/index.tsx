@@ -13,21 +13,21 @@ export const routers: RouteObject[] = [
     element: <Root />,
     errorElement: <h1>404</h1>,
     children: [
-      {
-        path: 'learn',
-        element: <LearnPage />,
-        children: [
-          {
-            path: '',
-            element: <h1></h1>,
-          },
-          ...lessionsRouters,
-        ],
-      },
-      {
-        path: 'tauri',
-        element: <Tauri />,
-      },
+      // {
+      //   path: 'learn',
+      //   element: <LearnPage />,
+      //   children: [
+      //     {
+      //       path: '',
+      //       element: <h1></h1>,
+      //     },
+      //     ...lessionsRouters,
+      //   ],
+      // },
+      // {
+      //   path: 'tauri',
+      //   element: <Tauri />,
+      // },
       {
         path: 'dictionary',
         element: <DictionaryPage />,

@@ -71,7 +71,7 @@ const AppLayout: React.FC<PropsWithChildren> = ({ children }) => {
         />
       </Sider>
       <Layout className="flex h-screen bg-gray-300" style={{ marginLeft: 200 }}>
-        <Header className="flex h-12 w-full items-start justify-center bg-white px-1 ">
+        {/* <Header className="flex h-12 w-full items-start justify-center bg-white px-1 ">
           <Row className="flex h-full w-full items-center justify-between">
             <Col span={8} className="flex items-center justify-center">
               <Search placeholder="Search" enterButton />
@@ -83,7 +83,7 @@ const AppLayout: React.FC<PropsWithChildren> = ({ children }) => {
               </div>
             </Col>
           </Row>
-        </Header>
+        </Header> */}
         <Content className="bg-slate-300 p-2 text-start">
           <div className="h-full flex-1 justify-start overflow-auto rounded-xl bg-white p-3 shadow-xl ">
             {children}

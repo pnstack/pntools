@@ -10,7 +10,7 @@ import './dictionary.css';
 import Search from 'antd/es/input/Search';
 import { Button } from 'antd';
 import { CloseOutlined, DownloadOutlined } from '@ant-design/icons';
-import { includes as lodashIncludes, filter as lodashFilter } from 'lodash';
+import { includes as lodashIncludes, filter as lodashFilter, lowerCase } from 'lodash';
 const DictionaryPage = () => {
   const [keywords, setKeywords] = useState('');
   const [isLoading, setIsloading] = useState(false);
@@ -18,14 +18,16 @@ const DictionaryPage = () => {
 
   const handleSearch = async () => {
     setIsloading(true);
+    const _key = lowerCase(keywords).trim();
     contentRef.current && (contentRef.current.innerHTML = 'loading');
-    const dt = await getDbStorage(keywords);
+    const dt = await getDbStorage(_key);
     if (dt && dt !== 'None') {
       contentRef.current && (contentRef.current.innerHTML = dt);
+      setIsloading(false);
       return;
     }
 
-    const steamUrl = `https://dictionary.cambridge.org/dictionary/english-vietnamese/${keywords}`;
+    const steamUrl = `https://dictionary.cambridge.org/dictionary/english-vietnamese/${_key}`;
     const html = await fetch<string>(steamUrl, {
       method: 'GET',
       responseType: ResponseType.Text,
@@ -34,7 +36,7 @@ const DictionaryPage = () => {
     const dic = $('.entry-body').html() || '';
     if (dic) {
       contentRef.current && (contentRef.current.innerHTML = $('.entry-body').html() || '');
-      await setDbStorage(keywords, $('.entry-body').html() || '');
+      await setDbStorage(_key, $('.entry-body').html() || '');
     } else {
       contentRef.current && (contentRef.current.innerHTML = 'Not found');
     }
@@ -48,7 +50,6 @@ const DictionaryPage = () => {
     if (isLoading) return;
     (async () => {
       const keys = await getAllDbKeys();
-      console.log('🚀 ~ file: index.tsx:44 ~ keys:', keys);
       setDbKeys(keys);
       setSearchKey(keys);
     })();
@@ -85,7 +86,6 @@ const DictionaryPage = () => {
       <div className="flex w-[300px] flex-col  space-y-3 px-3">
         <Search
           placeholder="Search..."
-          loading={isLoading}
           allowClear
           enterButton
           onChange={(e) => handleSerachKey(e.target.value)}
