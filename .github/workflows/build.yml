@@ -40,6 +40,7 @@ jobs:
         if: matrix.platform == 'macos-latest'
         run: |
           brew install rocksdb
+          brew install llvm
 
       - name: install dependencies (mac only)
         if: matrix.platform == 'macos-latest'
