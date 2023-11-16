@@ -5,7 +5,8 @@ import Root from './root';
 import LessionDoc from '@/lessions/components/LessionDoc';
 import DictionaryPage from '@/modules/dictionary';
 import { MenuProps, Spin } from 'antd';
-import Tauri from '@/modules/tauri';
+import TauriModule from '@/modules/tauri';
+import ToolsModule from '@/modules/tools';
 
 export const routers: RouteObject[] = [
   {
@@ -13,21 +14,8 @@ export const routers: RouteObject[] = [
     element: <Root />,
     errorElement: <h1>404</h1>,
     children: [
-      // {
-      //   path: 'learn',
-      //   element: <LearnPage />,
-      //   children: [
-      //     {
-      //       path: '',
-      //       element: <h1></h1>,
-      //     },
-      //     ...lessionsRouters,
-      //   ],
-      // },
-      // {
-      //   path: 'tauri',
-      //   element: <Tauri />,
-      // },
+      ToolsModule,
+      TauriModule,
       {
         path: 'dictionary',
         element: <DictionaryPage />,

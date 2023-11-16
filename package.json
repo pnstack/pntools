@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@emotion/react": "^11.11.1",
+    "@monaco-editor/react": "^4.6.0",
     "@tauri-apps/api": "^1.4.0",
     "antd": "^5.9.0",
     "cheerio": "1.0.0-rc.12",
