@@ -1,8 +1,8 @@
 import ToolsLayout from './components/ToolsLayout';
 import { RandomPasswordTool } from './tools';
-import ConvertTool from './tools/Convert';
 
 import { RouteObject } from 'react-router-dom';
+import RemoveLines from './tools/remove-lines';
 
 const ToolsModule: RouteObject = {
   path: 'tools',
@@ -12,9 +12,10 @@ const ToolsModule: RouteObject = {
       path: 'random-password-tool',
       element: <RandomPasswordTool />,
     },
+
     {
-      path: 'convert-tool',
-      element: <ConvertTool />,
+      path: 'Convert',
+      element: <RemoveLines />,
     },
   ],
 };

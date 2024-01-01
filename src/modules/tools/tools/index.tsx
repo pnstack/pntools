@@ -1,2 +1,2 @@
 export * from './RandomPasswordTool';
-export * from './Convert';
+export * from "./remove-lines"

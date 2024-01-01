@@ -84,8 +84,8 @@ const AppLayout: React.FC<PropsWithChildren> = ({ children }) => {
             </Col>
           </Row>
         </Header> */}
-        <Content className="bg-slate-300 p-2 text-start">
-          <div className="h-full flex-1 justify-start overflow-auto rounded-xl bg-white p-3 shadow-xl ">
+        <Content className="bg-slate-300 p-1 text-start">
+          <div className="h-full flex-1 justify-start overflow-auto rounded-xl bg-white p-1 shadow-xl ">
             {children}
           </div>
         </Content>
