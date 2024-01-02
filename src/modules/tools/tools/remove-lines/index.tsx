@@ -23,7 +23,6 @@ const RemoveLines = () => {
     const _formatFunc = formatFunc[convertSelected];
     try {
       const _output = _formatFunc(fromValue);
-      console.log('🚀 ~ file: index.tsx:26 ~ handleConvert ~ _output:', _output);
       setToValue(_output);
     } catch (e) {
       setToValue(JSON.stringify(e, null, 2));
@@ -52,7 +51,7 @@ const RemoveLines = () => {
         <Select
           showSearch
           defaultValue="default"
-          onChange={(value) => setConvertSelected(value)}
+          onChange={(value) => setConvertSelected(value as FormatTool)}
           value={convertSelected}
           options={convertOption}
           className="w-full"
