@@ -32,7 +32,7 @@ fn main() {
             #[cfg(debug_assertions)] // only include this code on debug builds
             {
                 let window = app.get_window("main").unwrap();
-                window.open_devtools();
+                // window.open_devtools();
                 //   window.close_devtools();
             }
 

@@ -12,6 +12,5 @@ pub fn make_menu() -> Menu {
             .add_item(close),
     );
     let menu = Menu::new().add_submenu(submenu);
-
     return menu;
 }

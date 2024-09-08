@@ -6,6 +6,7 @@ import TauriShell from './components/shell';
 import Timer from './components/time';
 import { RouteObject } from 'react-router-dom';
 import ModuleLayout from '@/components/ModuleLayout';
+import TauriStorage from './components/storage';
 
 const TauriModule: RouteObject = {
   path: 'tauri',
@@ -18,6 +19,10 @@ const TauriModule: RouteObject = {
     {
       path: 'Timer',
       element: <Timer />,
+    },
+    {
+      path: 'Storage',
+      element: <TauriStorage />,
     },
   ],
 };

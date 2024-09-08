@@ -38,8 +38,7 @@
       },
       "fs": {
         "all": true,
-                "scope": ["$HOME/.pntools/**/*"]
-
+        "scope": ["$HOME/.pntools/**/*"]
       },
       "path": {
         "all": true
