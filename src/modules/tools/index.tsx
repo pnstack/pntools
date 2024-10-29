@@ -3,6 +3,7 @@ import { RandomPasswordTool } from './tools';
 
 import { RouteObject } from 'react-router-dom';
 import RemoveLines from './tools/remove-lines';
+import TTS from './tools/tts';
 
 const ToolsModule: RouteObject = {
   path: 'tools',
@@ -16,6 +17,10 @@ const ToolsModule: RouteObject = {
     {
       path: 'Convert',
       element: <RemoveLines />,
+    },
+    {
+      path: 'TTS',
+      element: <TTS />,
     },
   ],
 };

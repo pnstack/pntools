@@ -1,32 +1,38 @@
 extern crate rocksdb;
 use rocksdb::{IteratorMode, DB};
 
-fn make_db_path() -> String {
+fn default_namespace(namespace: Option<&str>) -> &str {
+    namespace.unwrap_or("db")
+}
+
+fn make_db_path(namespace: Option<&str>) -> String {
+    let namespace = default_namespace(namespace);
+
     let home_dir = tauri::api::path::home_dir().unwrap();
     // create folder .pntools
     let mut path = home_dir.join(".pntools");
     std::fs::create_dir_all(path.clone()).unwrap();
     // create file db
-    path = path.join("db.db");
+    path = path.join(format!("db.{}", namespace));
     // return path
     path.to_str().unwrap().to_string()
 }
 
-fn open_db() -> DB {
-    let path = make_db_path();
+fn open_db(namespace: Option<&str>) -> DB {
+    let path = make_db_path(namespace);
     let db = DB::open_default(path).unwrap();
     return db;
 }
 
-pub fn put(k: &str, v: &str) {
-    let path = make_db_path();
+pub fn put(k: &str, v: &str, namespace: Option<&str>) {
+    let path = make_db_path(namespace);
     let db = DB::open_default(path).unwrap();
     db.put(k, v).unwrap();
     // println!("SET key: {}, value: {}", k, v);
 }
 
-pub fn get(k: &str) -> String {
-    let path = make_db_path();
+pub fn get(k: &str, namespace: Option<&str>) -> String {
+    let path = make_db_path(namespace);
     let db = DB::open_default(path).unwrap();
     let value = db.get(k).unwrap();
     match value {
@@ -43,8 +49,8 @@ pub fn get(k: &str) -> String {
 }
 
 // get all keys
-pub fn get_all() -> Vec<String> {
-    let db = open_db();
+pub fn get_all(namespace: Option<&str>) -> Vec<String> {
+    let db = open_db(namespace);
     let mut keys: Vec<String> = Vec::new();
     let iterator = db.iterator(IteratorMode::Start);
     for result in iterator {
@@ -57,8 +63,8 @@ pub fn get_all() -> Vec<String> {
 }
 
 // remove by key
-pub fn remove_key(k: &str) {
-    let path = make_db_path();
+pub fn remove_key(k: &str, namespace: Option<&str>) {
+    let path = make_db_path(namespace);
     let db = DB::open_default(path).unwrap();
     db.delete(k).unwrap();
     // println!("REMOVE key: {}", k);

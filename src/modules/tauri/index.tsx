@@ -7,6 +7,7 @@ import Timer from './components/time';
 import { RouteObject } from 'react-router-dom';
 import ModuleLayout from '@/components/ModuleLayout';
 import TauriStorage from './components/storage';
+import TauriImage from './components/image';
 
 const TauriModule: RouteObject = {
   path: 'tauri',
@@ -23,6 +24,10 @@ const TauriModule: RouteObject = {
     {
       path: 'Storage',
       element: <TauriStorage />,
+    },
+    {
+      path: 'Image',
+      element: <TauriImage />,
     },
   ],
 };

@@ -1,0 +1,27 @@
+.blockchain-visualization {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.block {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.connection {
+  position: relative;
+}
+
+.connection-line {
+  width: 2px;
+  height: 50px;
+  background-color: #ccc;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-1px);
+}

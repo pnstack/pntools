@@ -13,7 +13,7 @@ import type { MenuProps } from 'antd';
 import { Avatar, Col, Layout, Menu, Row, theme } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import Search from 'antd/es/input/Search';
-import { menu } from '@/routes';
+import { menus } from '@/routes';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -67,11 +67,11 @@ const AppLayout: React.FC<PropsWithChildren> = ({ children }) => {
           }}
           theme="dark"
           mode="inline"
-          items={menu}
+          items={menus}
         />
       </Sider>
       <Layout className="flex h-screen bg-gray-300" style={{ marginLeft: 200 }}>
-        {/* <Header className="flex h-12 w-full items-start justify-center bg-white px-1 ">
+        {/* <Header className="flex h-12 w-full items-start justify-center border-b-[1px] border-stone-500 bg-white px-1 ">
           <Row className="flex h-full w-full items-center justify-between">
             <Col span={8} className="flex items-center justify-center">
               <Search placeholder="Search" enterButton />
@@ -84,8 +84,8 @@ const AppLayout: React.FC<PropsWithChildren> = ({ children }) => {
             </Col>
           </Row>
         </Header> */}
-        <Content className="bg-slate-300 p-1 text-start">
-          <div className="h-full flex-1 justify-start overflow-auto rounded-xl bg-white p-1 shadow-xl ">
+        <Content className="bg-slate-300 text-start">
+          <div className="h-full flex-1 justify-start overflow-auto bg-white px-2 py-3">
             {children}
           </div>
         </Content>

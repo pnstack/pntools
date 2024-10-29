@@ -14,6 +14,7 @@ pub mod modules;
 struct Payload {
     message: String,
 }
+
 fn main() {
     // here `"quit".to_string()` defines the menu item id, and the second parameter is the menu item label.
     let quit = CustomMenuItem::new("quit".to_string(), "Quit");
@@ -25,9 +26,7 @@ fn main() {
 
     let tray = SystemTray::new().with_menu(tray_menu);
 
-    let mut python_server = modules::python::PythonServer::new();
-    let python_server = Arc::new(Mutex::new(python_server));
-    let python_server_clone = Arc::clone(&python_server);
+    let python_server = Arc::new(Mutex::new(modules::python::PythonServer::new()));
 
     tauri::Builder::default()
         .system_tray(tray)
@@ -44,53 +43,39 @@ fn main() {
             commands::blockchain::add_block_command,
             commands::blockchain::get_blocks_command,
         ])
-        .setup(|app| {
-            let main_window = app.get_window("main").unwrap();
+        .setup({
+            let python_server = Arc::clone(&python_server);
+            move |app| {
+                let main_window = app.get_window("main").unwrap();
 
-            // listen to the `event-name` (emitted on any window)
-            let id = app.listen_global("click", |event| {
-                println!("got event-name with payload {:?}", event.payload());
-            });
-            println!("Listening to event with id {}", id);
-            // unlisten to the event using the `id` returned on the `listen_global` function
-            // a `once_global` API is also exposed on the `App` struct
-            let mut python_server = python_server_clone.lock().unwrap();
-            python_server.start();
+                // listen to the `event-name` (emitted on any window)
+                let id = app.listen_global("click", |event| {
+                    println!("got event-name with payload {:?}", event.payload());
+                });
+                println!("Listening to event with id {}", id);
 
-            // Sử dụng Arc<Mutex<T>> để chia sẻ và đồng bộ hóa quyền truy cập vào python_server
+                python_server.lock().unwrap().start();
 
-            // Đảm bảo rằng server Python được dừng khi ứng dụng thoát
-            // let python_server_clone = Arc::clone(&python_server);
-            // app.on_exit(move || {
-            //     let mut python_server = python_server_clone.lock().unwrap();
-            //     println!("Exiting app");
-            //     python_server.stop();
-            // });
+                #[cfg(debug_assertions)] // only include this code on debug builds
+                {
+                    let window = app.get_window("main").unwrap();
+                    // window.open_devtools();
+                    //   window.close_devtools();
+                }
 
-            // let handle = thread::spawn(|| {
-            //     events::handle_time_event(app);
-            // });
-
-            #[cfg(debug_assertions)] // only include this code on debug builds
-            {
-                let window = app.get_window("main").unwrap();
-                // window.open_devtools();
-                //   window.close_devtools();
+                Ok(())
             }
-
-            Ok(())
         })
         .build(tauri::generate_context!())
         .expect("error while building tauri application")
-        .run(|_, event| match event {
-            RunEvent::ExitRequested { .. } => {
-                // let main_window = app_handle.get_window("main").unwrap();
-                // main_window.unlisten(id);
-                let mut python_server = python_server_clone.lock().unwrap();
-                python_server.stop();
-
-                println!("Stopped listening to the event");
+        .run({
+            let python_server = Arc::clone(&python_server);
+            move |_, event| match event {
+                RunEvent::ExitRequested { .. } => {
+                    python_server.lock().unwrap().stop();
+                    println!("Stopped listening to the event");
+                }
+                _ => {}
             }
-            _ => {}
         });
 }

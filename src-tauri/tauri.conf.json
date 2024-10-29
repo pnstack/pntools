@@ -73,6 +73,10 @@
         "height": 600,
         "maximized": true
       }
-    ]
+    ],
+     "systemTray": {
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true
+    }
   }
 }

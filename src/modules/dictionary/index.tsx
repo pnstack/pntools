@@ -1,16 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { open } from '@tauri-apps/api/dialog';
-import { readBinaryFile } from '@tauri-apps/api/fs';
-import { appConfigDir, dataDir } from '@tauri-apps/api/path';
-import { fs, invoke } from '@tauri-apps/api';
-import * as cheerio from 'cheerio';
-import { ResponseType, fetch } from '@tauri-apps/api/http';
-import { getAllDbKeys, getDbStorage, removeDbKey, setDbStorage } from '@/utils/db';
-import './dictionary.css';
-import Search from 'antd/es/input/Search';
-import { Button } from 'antd';
+import { DbStorage } from '@/utils/db';
 import { CloseOutlined, DownloadOutlined } from '@ant-design/icons';
-import { includes as lodashIncludes, filter as lodashFilter, lowerCase } from 'lodash';
+import { ResponseType, fetch } from '@tauri-apps/api/http';
+import { Button } from 'antd';
+import Search from 'antd/es/input/Search';
+import * as cheerio from 'cheerio';
+import { filter as lodashFilter, includes as lodashIncludes, lowerCase } from 'lodash';
+import { useEffect, useRef, useState } from 'react';
+import './dictionary.css';
+
+const storage = new DbStorage('dictionary');
+
 const DictionaryPage = () => {
   const [keywords, setKeywords] = useState('');
   const [isLoading, setIsloading] = useState(false);
@@ -20,7 +19,7 @@ const DictionaryPage = () => {
     setIsloading(true);
     const _key = lowerCase(keywords).trim();
     contentRef.current && (contentRef.current.innerHTML = 'loading');
-    const dt = await getDbStorage(_key);
+    const dt = await storage.getDbStorage(_key);
     if (dt && dt !== 'None') {
       contentRef.current && (contentRef.current.innerHTML = dt);
       setIsloading(false);
@@ -36,7 +35,7 @@ const DictionaryPage = () => {
     const dic = $('.entry-body').html() || '';
     if (dic) {
       contentRef.current && (contentRef.current.innerHTML = $('.entry-body').html() || '');
-      await setDbStorage(_key, $('.entry-body').html() || '');
+      await storage.setDbStorage(_key, $('.entry-body').html() || '');
     } else {
       contentRef.current && (contentRef.current.innerHTML = 'Not found');
     }
@@ -49,7 +48,7 @@ const DictionaryPage = () => {
   useEffect(() => {
     if (isLoading) return;
     (async () => {
-      const keys = await getAllDbKeys();
+      const keys = await storage.getAllDbKeys();
       setDbKeys(keys);
       setSearchKey(keys);
     })();
@@ -64,7 +63,7 @@ const DictionaryPage = () => {
 
   const handleRemoveKey = async (key: string) => {
     setIsloading(true);
-    await removeDbKey(key);
+    await storage.removeDbKey(key);
     setIsloading(false);
   };
 
@@ -72,7 +71,7 @@ const DictionaryPage = () => {
     setKeywords(key);
     if (!contentRef.current) return;
     contentRef.current && (contentRef.current.innerHTML = 'loading');
-    const dt = await getDbStorage(key);
+    const dt = await storage.getDbStorage(key);
     if (dt && dt !== 'None') {
       contentRef.current && (contentRef.current.innerHTML = dt);
       return;

@@ -7,15 +7,22 @@ import DictionaryPage from '@/modules/dictionary';
 import { MenuProps, Spin } from 'antd';
 import TauriModule from '@/modules/tauri';
 import ToolsModule from '@/modules/tools';
+import BlockchainModule from '@/modules/blockchain';
+import ErrorPage from '@/pages/error';
 
 export const routers: RouteObject[] = [
   {
     path: '/',
     element: <Root />,
-    errorElement: <h1>404</h1>,
+    errorElement: <ErrorPage />,
     children: [
+      {
+        path: '/',
+        element: <HomePage />,
+      },
       ToolsModule,
       TauriModule,
+      BlockchainModule,
       {
         path: 'dictionary',
         element: <DictionaryPage />,
@@ -41,4 +48,4 @@ const convertToMenu = (routers: RouteObject[], parrentPath = ''): MenuProps['ite
   });
 };
 
-export const menu: MenuProps['items'] = convertToMenu(routers[0].children!);
+export const menus: MenuProps['items'] = convertToMenu(routers[0].children!);
