@@ -1,6 +1,6 @@
 import { DbStorage } from '@/utils/db';
 import { CloseOutlined, DownloadOutlined } from '@ant-design/icons';
-import { ResponseType, fetch } from '@tauri-apps/plugin-http';
+import { fetch } from '@tauri-apps/plugin-http';
 import { Button } from 'antd';
 import Search from 'antd/es/input/Search';
 import * as cheerio from 'cheerio';
@@ -27,10 +27,10 @@ const DictionaryPage = () => {
     }
 
     const steamUrl = `https://dictionary.cambridge.org/dictionary/english-vietnamese/${_key}`;
-    const html = await fetch<string>(steamUrl, {
+    const response = await fetch(steamUrl, {
       method: 'GET',
-      responseType: ResponseType.Text,
-    }).then((res) => res.data);
+    });
+    const html = await response.text();
     const $ = cheerio.load(html);
     const dic = $('.entry-body').html() || '';
     if (dic) {
