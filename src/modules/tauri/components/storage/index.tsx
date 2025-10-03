@@ -1,5 +1,5 @@
 import { getAllDbKeys, getDbStorage, removeDbKey, setDbStorage } from '@/utils/db';
-import { invoke } from '@tauri-apps/api';
+import { invoke } from '@tauri-apps/api/core';
 import { Input, Button, Form } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { includes as lodashIncludes, filter as lodashFilter, lowerCase } from 'lodash';

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Child, Command } from '@tauri-apps/api/shell';
+import { Child, Command } from '@tauri-apps/plugin-shell';
 import { Button } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import path from 'path';
-import { BaseDirectory, Dir, writeTextFile } from '@tauri-apps/api/fs';
+import { BaseDirectory, Dir, writeTextFile } from '@tauri-apps/plugin-fs';
 import { join, appDataDir, homeDir } from '@tauri-apps/api/path';
 import Editor from '@monaco-editor/react';
 

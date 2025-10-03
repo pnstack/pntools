@@ -8,7 +8,7 @@ fn default_namespace(namespace: Option<&str>) -> &str {
 fn make_db_path(namespace: Option<&str>) -> String {
     let namespace = default_namespace(namespace);
 
-    let home_dir = tauri::api::path::home_dir().unwrap();
+    let home_dir = dirs::home_dir().unwrap();
     // create folder .pntools
     let mut path = home_dir.join(".pntools");
     std::fs::create_dir_all(path.clone()).unwrap();

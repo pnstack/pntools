@@ -1,6 +1,6 @@
 import { DbStorage } from '@/utils/db';
 import { CloseOutlined, DownloadOutlined } from '@ant-design/icons';
-import { ResponseType, fetch } from '@tauri-apps/api/http';
+import { ResponseType, fetch } from '@tauri-apps/plugin-http';
 import { Button } from 'antd';
 import Search from 'antd/es/input/Search';
 import * as cheerio from 'cheerio';
