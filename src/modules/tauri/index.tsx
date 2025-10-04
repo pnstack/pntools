@@ -1,13 +1,10 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import { invoke } from '@tauri-apps/api/core';
-import { Button, Input } from 'antd';
-import TauriShell from './components/shell';
-import Timer from './components/time';
 import { RouteObject } from 'react-router-dom';
 import ModuleLayout from '@/components/ModuleLayout';
+import TauriShell from './components/shell';
+import Timer from './components/time';
 import TauriStorage from './components/storage';
 import TauriImage from './components/image';
+import PortExplorer from './components/port-explorer';
 
 const TauriModule: RouteObject = {
   path: 'tauri',
@@ -28,6 +25,10 @@ const TauriModule: RouteObject = {
     {
       path: 'Image',
       element: <TauriImage />,
+    },
+    {
+      path: 'PortExplorer',
+      element: <PortExplorer />,
     },
   ],
 };
