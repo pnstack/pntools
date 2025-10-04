@@ -38,6 +38,8 @@ fn main() {
             commands::blockchain::init_blockchain_command,
             commands::blockchain::add_block_command,
             commands::blockchain::get_blocks_command,
+            commands::port_scanner::scan_ports_command,
+            commands::port_scanner::check_nmap_available,
         ])
         .setup({
             let python_server = Arc::clone(&python_server);
