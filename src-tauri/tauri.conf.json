@@ -2,65 +2,27 @@
   "build": {
     "beforeDevCommand": "pnpm dev",
     "beforeBuildCommand": "pnpm build",
-    "devPath": "http://localhost:1420",
-    "distDir": "../dist",
-    "withGlobalTauri": false
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420"
   },
-  "package": {
-    "productName": "pntools",
-    "version": "1.0.2"
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
   },
-  "tauri": {
-    "allowlist": {
-      "all": true,
-      "shell": {
-        "all": true,
-        "execute": true,
-        "sidecar": true,
-        "open": true,
-        "scope": [
-          {
-            "name": "git",
-            "cmd": "git",
-            "args": true
-          },
-          {
-            "name": "node",
-            "cmd": "node",
-            "args": true
-          },
-          {
-            "name": "python",
-            "cmd": "python",
-            "args": true
-          }
-        ]
-      },
-      "fs": {
-        "all": true,
-        "scope": ["$HOME/.pntools/**/*"]
-      },
-      "path": {
-        "all": true
-      },
-      "http": {
-        "all": true,
-        "request": false,
-        "scope": ["https://dictionary.cambridge.org/dictionary/english-vietnamese/*"]
-      }
-    },
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "identifier": "com.pnstack.pntools",
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ]
-    },
+  "productName": "pntools",
+  "mainBinaryName": "pntools",
+  "version": "1.0.2",
+  "identifier": "com.pnstack.pntools",
+  "plugins": {},
+  "app": {
+    "withGlobalTauri": false,
     "security": {
       "csp": null
     },
@@ -71,12 +33,9 @@
         "title": "pntools",
         "width": 800,
         "height": 600,
-        "maximized": true
+        "maximized": true,
+        "useHttpsScheme": true
       }
-    ],
-     "systemTray": {
-      "iconPath": "icons/icon.png",
-      "iconAsTemplate": true
-    }
+    ]
   }
 }

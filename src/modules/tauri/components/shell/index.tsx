@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Child, Command } from '@tauri-apps/api/shell';
+import { Child, Command } from '@tauri-apps/plugin-shell';
 import { Button } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import path from 'path';
-import { BaseDirectory, Dir, writeTextFile } from '@tauri-apps/api/fs';
+import { BaseDirectory, writeTextFile } from '@tauri-apps/plugin-fs';
 import { join, appDataDir, homeDir } from '@tauri-apps/api/path';
 import Editor from '@monaco-editor/react';
 
@@ -26,7 +26,7 @@ const TauriShell = () => {
   const runCommand = async () => {
     setStdOut('');
     setStatus(ProcessStatus.RUNNING);
-    const command = new Command('python', [pythonDir.current]);
+    const command = Command.create('python', [pythonDir.current]);
     command.on('close', (data) => {
       console.log(`command finished with code ${data.code} and signal ${data.signal}`);
       setStatus(data.code === 0 ? ProcessStatus.SUCCESS : ProcessStatus.ERROR);
@@ -42,7 +42,7 @@ const TauriShell = () => {
     });
 
     child.current = await command.spawn();
-    console.log('pid:', child.current.pid);
+    console.log('pid:', child.current?.pid);
   };
 
   const kill = async () => {
@@ -65,8 +65,9 @@ const TauriShell = () => {
       const _homeDir = await homeDir();
       pythonDir.current = await join(_homeDir, '.pntools', 'python', 'python.py');
       await writeTextFile(
-        { contents: code, path: await join(_homeDir, '.pntools', 'python', 'python.py') },
-        { dir: BaseDirectory.Home },
+        await join(_homeDir, '.pntools', 'python', 'python.py'),
+        code,
+        { baseDir: BaseDirectory.Home },
       );
     })();
   }, [code]);

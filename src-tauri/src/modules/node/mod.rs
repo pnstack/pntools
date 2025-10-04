@@ -1,7 +1,6 @@
 use std::fs;
 use std::fs::{File, OpenOptions};
 use std::io::{Read, Write};
-use std::path::Path;
 use std::process::{Child, Command, Stdio};
 pub struct PythonServer {
     process: Option<Child>,
@@ -13,7 +12,7 @@ impl PythonServer {
     }
 
     pub fn start(&mut self) {
-        let home_dir = tauri::api::path::home_dir().unwrap();
+        let home_dir = dirs::home_dir().unwrap();
         let python_path = home_dir
             .join(".pntools")
             .join("tools")

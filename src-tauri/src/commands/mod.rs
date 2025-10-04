@@ -26,4 +26,3 @@ pub fn get_all_db_keys(namespace: Option<&str>) -> Vec<String> {
 pub fn remove_key(key: &str, namespace: Option<&str>) {
     db::remove_key(key, namespace)
 }
-

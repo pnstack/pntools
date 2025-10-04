@@ -1,4 +1,4 @@
-import { invoke } from '@tauri-apps/api/tauri';
+import { invoke } from '@tauri-apps/api/core';
 
 export const setDbStorage = async (key: string, value: string) => {
   return await invoke('put_db', { key, value });
