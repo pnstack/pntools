@@ -9,6 +9,13 @@ import TauriModule from '@/modules/tauri';
 import ToolsModule from '@/modules/tools';
 import BlockchainModule from '@/modules/blockchain';
 import ErrorPage from '@/pages/error';
+import {
+  HomeOutlined,
+  ToolOutlined,
+  AppstoreOutlined,
+  BlockOutlined,
+  BookOutlined,
+} from '@ant-design/icons';
 
 export const routers: RouteObject[] = [
   {
@@ -31,19 +38,33 @@ export const routers: RouteObject[] = [
   },
 ];
 
+const getIconForRoute = (path: string) => {
+  const iconMap: Record<string, React.ReactNode> = {
+    '/': <HomeOutlined />,
+    'tools': <ToolOutlined />,
+    'tauri': <AppstoreOutlined />,
+    'blockchain': <BlockOutlined />,
+    'dictionary': <BookOutlined />,
+  };
+  return iconMap[path] || null;
+};
+
 const convertToMenu = (routers: RouteObject[], parrentPath = ''): MenuProps['items'] => {
   return routers.map((item) => {
+    const icon = getIconForRoute(item.path as string);
     if (item.children) {
-      let children = convertToMenu(item.children, item.path);
+      const children = convertToMenu(item.children, item.path);
       return {
         key: (parrentPath + '/' + item.path) as string,
         label: item.path as string,
+        icon,
         children,
       };
     }
     return {
       key: (parrentPath + '/' + item.path) as string,
       label: item.path as string,
+      icon,
     };
   });
 };

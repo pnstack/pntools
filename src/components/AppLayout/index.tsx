@@ -8,11 +8,12 @@ const { Content } = Layout;
 
 const AppLayout: React.FC<PropsWithChildren> = ({ children }) => {
   const [showRightSidebar] = useState(false);
+  const [sidebarWidth, setSidebarWidth] = useState(200);
 
   return (
     <Layout hasSider>
-      <LeftSidebar />
-      <Layout className="flex h-screen bg-gray-300" style={{ marginLeft: 200 }}>
+      <LeftSidebar onWidthChange={setSidebarWidth} />
+      <Layout className="flex h-screen bg-gray-300" style={{ marginLeft: sidebarWidth }}>
         <HeaderMenu />
         <Content className="bg-slate-300 text-start">
           <div className="h-full flex-1 justify-start overflow-auto bg-white px-2 py-3">
