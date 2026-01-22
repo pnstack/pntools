@@ -57,8 +57,8 @@ importers:
         specifier: ^1.10.0
         version: 1.10.0
       lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
+        specifier: ^4.17.23
+        version: 4.17.23
       match-sorter:
         specifier: ^6.3.1
         version: 6.3.1
@@ -82,7 +82,7 @@ importers:
         version: 1.2.0
       tauri-plugin-websocket-api:
         specifier: github:tauri-apps/tauri-plugin-websocket#v1
-        version: https://codeload.github.com/tauri-apps/tauri-plugin-websocket/tar.gz/11408e1b5200218a2ed9c140ce3dcc6e434868ec
+        version: https://codeload.github.com/tauri-apps/tauri-plugin-websocket/tar.gz/9009481d08074c2cf12780f852568865418f13ef
     devDependencies:
       '@tailwindcss/typography':
         specifier: ^0.5.9
@@ -1643,8 +1643,8 @@ packages:
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+  lodash@4.17.23:
+    resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
 
   longest-streak@3.1.0:
     resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
@@ -2471,8 +2471,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  tauri-plugin-websocket-api@https://codeload.github.com/tauri-apps/tauri-plugin-websocket/tar.gz/11408e1b5200218a2ed9c140ce3dcc6e434868ec:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-websocket/tar.gz/11408e1b5200218a2ed9c140ce3dcc6e434868ec}
+  tauri-plugin-websocket-api@https://codeload.github.com/tauri-apps/tauri-plugin-websocket/tar.gz/9009481d08074c2cf12780f852568865418f13ef:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-websocket/tar.gz/9009481d08074c2cf12780f852568865418f13ef}
     version: 0.0.0
 
   text-table@0.2.0:
@@ -4164,7 +4164,7 @@ snapshots:
 
   lodash.merge@4.6.2: {}
 
-  lodash@4.17.21: {}
+  lodash@4.17.23: {}
 
   longest-streak@3.1.0: {}
 
@@ -5231,7 +5231,7 @@ snapshots:
     transitivePeerDependencies:
       - ts-node
 
-  tauri-plugin-websocket-api@https://codeload.github.com/tauri-apps/tauri-plugin-websocket/tar.gz/11408e1b5200218a2ed9c140ce3dcc6e434868ec:
+  tauri-plugin-websocket-api@https://codeload.github.com/tauri-apps/tauri-plugin-websocket/tar.gz/9009481d08074c2cf12780f852568865418f13ef:
     dependencies:
       '@tauri-apps/api': 1.6.0
 
